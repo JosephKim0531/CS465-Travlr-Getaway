@@ -18,8 +18,9 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 //register handlebar partials (https://www.npmjs.com/package/hbs)
-//hbs.registerPartial(path.join(__dirname, 'app_server', 'views/partials'));
-hbs.registerPartials(__dirname + '/views/partials', function (err) {});
+hbs.registerPartials(path.join(__dirname, 'app_server', 'views/partials'));
+
+
 
 app.set('view engine', 'hbs');
 
@@ -29,7 +30,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+//had to include index as webpage used index.html with just /
+//app.use('/', indexRouter);
+app.use('/index', indexRouter);
 app.use('/users', usersRouter);
 app.use('/travel', travelRouter);
 app.use('/about', aboutRouter);
