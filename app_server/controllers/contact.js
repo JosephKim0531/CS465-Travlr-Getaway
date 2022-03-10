@@ -1,7 +1,11 @@
 const contact = (req, res) => {
-    res.render('contact', {title: 'Travlr Getaways - Contact'});
+    pageTitle = process.env.npm_package_description + ' - Contact';
+    res.render('contact', {title: pageTitle});
 };
 
 module.exports = {
     contact
-}
+};
+
+
+

@@ -1,7 +1,10 @@
 const meals = (req, res) => {
-    res.render('meals', {title: 'Travlr Getaways - Meals'});
+    pageTitle = process.env.npm_package_description + ' - Meals';
+    res.render('meals', {title: pageTitle});
 };
 
 module.exports = {
     meals
-}
+};
+
+

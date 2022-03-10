@@ -4,4 +4,4 @@ const users = (req, res, next) => {
 
 module.exports = {
     users
-}
+};
