@@ -10,8 +10,8 @@ const roomTypes = JSON.parse(fs.readFileSync('./data/roomTypes.json', 'utf-8'));
 
 
 const rooms = (req, res) => {
-    pageTitle = process.env.npm_package_description + ' - Rooms';
-    res.render('rooms', {title: pageTitle, roomTypes});
+    //pageTitle = process.env.npm_package_description + ' - Rooms';
+    res.render('rooms', {title: "Travlr Getaways - Rooms", roomTypes});
 }
 
 module.exports = {

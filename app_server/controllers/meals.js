@@ -9,8 +9,8 @@ const fs = require('fs');
 const foodItems = JSON.parse(fs.readFileSync('./data/mealTypes.json', 'utf-8'));
 
 const meals = (req, res) => {
-    pageTitle = process.env.npm_package_description + ' - Meals';
-    res.render('meals', {title: pageTitle, foodItems});
+    //pageTitle = process.env.npm_package_description + ' - Meals';
+    res.render('meals', {title: "Travlr Getaways - Meals", foodItems});
 };
 
 module.exports = {

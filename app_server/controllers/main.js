@@ -10,8 +10,8 @@ const indexBlog = JSON.parse(fs.readFileSync('./data/indexBlogs.json', 'utf-8'))
 
 
 const index = (req, res) => {
-    pageTitle = process.env.npm_package_description + ' - Home';
-    res.render('index', {title: pageTitle, indexBlog});
+    //pageTitle = process.env.npm_package_description + ' - Home';
+    res.render('index', {title: "Travlr Getaways - Home", indexBlog});
 };
 
 module.exports = {

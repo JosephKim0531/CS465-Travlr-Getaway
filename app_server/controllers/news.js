@@ -11,8 +11,8 @@ const vacTips = JSON.parse(fs.readFileSync('./data/vacationTips.json', 'utf-8'))
 
 
 const news = (req, res) => {
-    pageTitle = process.env.npm_package_description + ' - News';
-    res.render('news', {title: pageTitle, latestNews, vacTips});
+    //pageTitle = process.env.npm_package_description + ' - News';
+    res.render('news', {title: "Travlr Getaways - News", latestNews, vacTips});
 }
 
 module.exports = {
