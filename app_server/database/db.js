@@ -1,13 +1,21 @@
 const mongoose = require('mongoose');
+const host = process.env.DB_HOST || '127.0.0.1'
+const dbURI = `mongodb://${host}/travlr`;
 const readLine = require('readline');
 
-let dbURL = `mongodb://${host}/travlr`;
-if (process.env.NODE_ENV === 'production') {
-  dbURL = process.env.DB_HOST || process.env.MONGODB_URI;
-}
+//avoid 'current server discovery and monitoring engine is deprecated' 
+mongoose.set('useUnifiedTopology', true);
+
+//let dbURL = `mongodb://${host}/travlr`;
+//if (process.env.NODE_ENV === 'production') {
+//  dbURL = process.env.DB_HOST || process.env.MONGODB_URI;
+//}
 
 const connect = () => {
-  setTimeout(() => mongoose.connect(dbURL, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }), 1000);
+  setTimeout(() => mongoose.connect(dbURL, { 
+    useNewUrlParser: true, 
+    useCreateIndex: true
+   }),  1000);
 }
 
 mongoose.connection.on('connected', () => {
@@ -40,16 +48,21 @@ const gracefulShutdown = (msg, callback) => {
   });
 };
 
+//for nodemon restarts
 process.once('SIGUSR2', () => {
   gracefulShutdown('nodemon restart', () => {
     process.kill(process.pid, 'SIGUSR2');
   });
 });
+
+//for app termination
 process.on('SIGINT', () => {
   gracefulShutdown('app termination', () => {
     process.exit(0);
   });
 });
+
+//for Heroku app termination
 process.on('SIGTERM', () => {
   gracefulShutdown('Heroku app shutdown', () => {
     process.exit(0);
@@ -59,4 +72,4 @@ process.on('SIGTERM', () => {
 connect();
 
 //bring in the Mongoose schema
-require('./travlr');
+require('./models/travlr');
