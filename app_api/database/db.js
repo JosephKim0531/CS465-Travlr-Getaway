@@ -4,7 +4,7 @@ const dbURI = `mongodb://${host}/travlr`;
 const readLine = require('readline');
 
 //avoid 'current server discovery and monitoring engine is deprecated' 
-mongoose.set('useUnifiedTopology', true);
+mongoose.set("useUnifiedTopology", true);
 
 //let dbURL = `mongodb://${host}/travlr`;
 //if (process.env.NODE_ENV === 'production') {
@@ -12,7 +12,7 @@ mongoose.set('useUnifiedTopology', true);
 //}
 
 const connect = () => {
-  setTimeout(() => mongoose.connect(dbURL, { 
+  setTimeout(() => mongoose.connect(dbURI, { 
     useNewUrlParser: true, 
     useCreateIndex: true
     }),  1000);
@@ -72,4 +72,4 @@ process.on('SIGTERM', () => {
 connect();
 
 //bring in the Mongoose schema
-require('./models/travlr');
+require("./models/travlr");
